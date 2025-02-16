@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Map</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap" defer></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap&loading=async&map_ids=1f413cc5c4b114c"
+      defer
+    ></script>
 </head>
 <body>
     <h1>Resource Map</h1>
@@ -22,8 +25,12 @@
         <form id="resource-form">
             <input type="text" id="name" placeholder="Resource Name" required>
             <input type="text" id="description" placeholder="Description" required>
+            <!-- Hidden fields for latitude and longitude -->
+            <input type="hidden" id="lat" name="lat">
+            <input type="hidden" id="lng" name="lng">
             <button type="submit">Add Resource</button>
         </form>
+        <p>Click on the map to select the resource location.</p>
     </div>
 </body>
 </html>
