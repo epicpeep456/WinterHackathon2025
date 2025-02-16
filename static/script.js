@@ -41,6 +41,60 @@ function initMap() {
         });
 }
 
+// Function to fetch locations from Flask backend
+async function fetchLocations(zipCode) {
+    const response = await fetch(`/api/resources-gmaps?zip_code=${zipCode}`);
+    const data = await response.json();
+
+    const icons = {
+        "Food Banks": {
+            url: "/static/images/food-bank.png",
+            scaledSize: new google.maps.Size(32, 32),
+        },
+        "Water Fountains": {
+            url: "/static/images/water-bottle.png",
+            scaledSize: new google.maps.Size(32, 32),
+        },
+        "Parks": {
+            url: "/static/images/tree-silhouette.png",
+            scaledSize: new google.maps.Size(32, 32),
+        },
+    };
+    
+    // Plot markers on the map
+    data.forEach(place => {
+        const marker = new google.maps.Marker({
+            position: { lat: place.latitude, lng: place.longitude },
+            map: map,
+            title: place.name,
+            icon: icons[place.query]
+        });
+        const infoWindow = new google.maps.InfoWindow({
+            content: `<div><strong>${place.name}</strong><br>${place.address}</div>`
+        });
+
+        marker.addListener("click", () => {
+            infoWindow.open(map, marker);
+        });
+
+        markers.push(marker);
+    });
+
+
+    // Center map on first location
+    if (data.length > 0) {
+        map.setCenter({ lat: data[0].latitude, lng: data[0].longitude });
+    }
+}
+
+
+// Handle form submission
+document.getElementById("zip_code").addEventListener("change", function() {
+    const zipCode = this.value;
+    fetchLocations(zipCode);
+});
+
+
 // Add a new resource
 document.getElementById("resource-form").addEventListener("submit", (e) => {
     e.preventDefault();

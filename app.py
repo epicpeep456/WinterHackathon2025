@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 import openai
 import os
+import requests
+import ResourceFinder
+import json
 
 app = Flask(__name__)
 
@@ -28,7 +31,7 @@ resources = [
 # Homepage
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", google_maps_api_key=google_maps_api_key)
 
 # API to get resources
 @app.route("/api/resources", methods=["GET"])
@@ -61,6 +64,18 @@ def add_resource():
     }
     resources.append(new_resource)
     return jsonify({"message": "Resource added successfully!", "resource": new_resource})
+
+# Get resources from Google Maps
+@app.route("/api/resources-gmaps", methods=["GET"])
+def get_resources_gmaps():
+    zip_code = request.args.get("zip_code")
+
+    if not zip_code:
+        return jsonify({"error": "Zip code is required"}), 400
+
+    resources = ResourceFinder.get_resources(zip_code)
+    return jsonify(resources)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
