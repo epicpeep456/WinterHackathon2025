@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Map</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap" defer></script>
+</head>
+<body>
+    <h1>Resource Map</h1>
+    <div id="map"></div>
+    <div id="resource-details">
+        <h2>Resource Details</h2>
+        <p id="resource-name"></p>
+        <p id="resource-description"></p>
+        <p id="resource-summary"></p>
+    </div>
+    <div id="add-resource">
+        <h2>Add a Resource</h2>
+        <form id="resource-form">
+            <input type="text" id="name" placeholder="Resource Name" required>
+            <input type="text" id="description" placeholder="Description" required>
+            <button type="submit">Add Resource</button>
+        </form>
+    </div>
+</body>
+</html>

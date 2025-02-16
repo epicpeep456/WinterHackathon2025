@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#map {
+    height: 400px;
+    width: 80%;
+    margin: 20px 0;
+}
+
+#resource-details, #add-resource {
+    width: 80%;
+    margin: 20px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, button {
+    margin: 5px 0;
+    padding: 10px;
+}
