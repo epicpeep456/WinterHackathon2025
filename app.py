@@ -1,7 +1,66 @@
-from flask import Flask #pip install flask
+from flask import Flask, render_template, request, jsonify
+import openai
+import os
 
 app = Flask(__name__)
 
+google_maps_api_key = os.getenv("GOOGLE_MAPS_API_KEY")
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Mock database for resources
+resources = [
+    {
+        "id": 1,
+        "name": "Community Food Bank",
+        "lat": 37.7749,
+        "lng": -122.4194,
+        "description": "Provides free meals and groceries to low-income families.",
+    },
+    {
+        "id": 2,
+        "name": "Homeless Shelter",
+        "lat": 37.7849,
+        "lng": -122.4294,
+        "description": "Offers temporary housing and support services.",
+    },
+]
+
+# Homepage
 @app.route("/")
-def start_page():
-    return "<p>Start Page</p>"
+def home():
+    return render_template("index.html")
+
+# API to get resources
+@app.route("/api/resources", methods=["GET"])
+def get_resources():
+    return jsonify(resources)
+
+# API to summarize resource description using OpenAI
+@app.route("/api/summarize", methods=["POST"])
+def summarize():
+    data = request.json
+    description = data.get("description", "")
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=f"Summarize this resource description in one sentence: {description}",
+        max_tokens=50,
+    )
+    summary = response.choices[0].text.strip()
+    return jsonify({"summary": summary})
+
+# API to add a new resource (crowdsourcing)
+@app.route("/api/add-resource", methods=["POST"])
+def add_resource():
+    data = request.json
+    new_resource = {
+        "id": len(resources) + 1,
+        "name": data.get("name"),
+        "lat": data.get("lat"),
+        "lng": data.get("lng"),
+        "description": data.get("description"),
+    }
+    resources.append(new_resource)
+    return jsonify({"message": "Resource added successfully!", "resource": new_resource})
+
+if __name__ == "__main__":
+    app.run(debug=True)
