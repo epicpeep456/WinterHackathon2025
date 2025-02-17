@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="predict_container">
+        <h1>Upload Your Google Maps Timeline Data</h1>
+        <button onclick="window.location.href='/'">Return Home</button>
+        <p>Upload your JSON file, and we'll predict new locations you might like to visit.</p>
+
+        <p>If you do not have a JSON file, this link will take you to the download page.</p>
+
+        <a href="https://takeout.google.com/settings/takeout/custom/location_history" target="_blank">Collect your location history data</a>
+        
+        <div id="pln_centered_button">
+            <div id="pln_centered_button">
+                <label for="file-upload" class="custom-file-upload">
+                    Choose JSON File
+                </label>
+                <input type="file" id="file-upload" accept=".json">
+            </div>
+
+            <div id="pln_centered_button"><button id="process-btn">Generate Predictions</button></div>
+        </div>
+
+        <div id="predictions">
+            <h2>Predicted Locations</h2>
+            <ul id="locations-list">
+                <!-- Predicted locations will be listed here -->
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

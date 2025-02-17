@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Map</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{google_maps_api_key}}&callback=initMap" defer></script> 
-    <script asyncsrc="https://maps.googleapis.com/maps/api/js?key={{google_maps_api_key}}&loading=async&libraries=places&callback=initMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{google_maps_api_key}}&callback=initMap" defer></script>
+    <script
+        asyncsrc="https://maps.googleapis.com/maps/api/js?key={{google_maps_api_key}}&loading=async&libraries=places&callback=initMap"></script>
+    <script>
+        function preditions() {
+            fetch("/predictions", {
+                method: "POST",
+                body: formData
+            })
+        }
+    </script>
 </head>
+
 <body>
-    <h1>Resource Map</h1>
+    <h1>Mappika</h1>
     <div id="map"></div>
     <div id="user-details">
         <h2>User Details</h2>
@@ -30,5 +41,12 @@
             <button type="submit">Add Resource</button>
         </form>
     </div>
+    <div id="go-to-loc-predict">
+        <h2>Where You Might Want to Visit Next</h2>
+        <div id="pln_centered_button">
+            <button onclick="window.location.href='/predictions'">AI Location Predictor</button>
+        </div>
+    </div>
 </body>
+
 </html>

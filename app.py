@@ -76,6 +76,9 @@ def get_resources_gmaps():
     resources = ResourceFinder.get_resources(zip_code)
     return jsonify(resources)
 
+@app.route("/predictions")
+def get_predictions():
+    return render_template('Predictions.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
