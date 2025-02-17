@@ -11,6 +11,45 @@
 </head>
 
 <body>
+    <style>
+        #instructions-list {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    
+        #instructions-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    
+        #instructions-list li strong {
+            color: #007bff;
+        }
+    
+        #instructions-list li .icon {
+            font-size: 18px;
+            color: #007bff;
+        }
+    
+        #instructions-list li .icon.walk {
+            color: #28a745;
+        }
+    
+        #instructions-list li .icon.bus {
+            color: #dc3545;
+        }
+    </style>
     <h1>Resource Map</h1>
     <div id="map" aria-label="Interactive map"></div>
     <div id="user-details">
@@ -41,7 +80,9 @@
         <button id="recommend-button">🔍 Get Recommendations</button>
         <button id="current-location-button">📍 Get Recommendations Based on My Location</button>
         <ul id="recommendations-list"></ul>
+        <button id="bus-routes-button">Get Bus Routes</button>
     </div>
+    <div id="instructions-list"></div>
     <div id="utilities">
         <h2>Nearby Utilities and Public Resources</h2>
         <button id="find-utilities-button">🚰 Find Nearby Utilities</button>
