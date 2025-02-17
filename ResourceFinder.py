@@ -1,8 +1,7 @@
 import requests
 import os
-import system_vars
 
-google_maps_api_key = system_vars.google_maps_api_key
+google_maps_api_key = os.getenv("GOOGLE_MAPS_API_KEY")
 
 def get_resources(zip_code):
     queries = ["Food Banks", "Water Fountains", "Parks"]
