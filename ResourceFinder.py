@@ -55,4 +55,3 @@ def get_lat_long(zip_code):
     else:
         print("Error:", data["status"])
         return None, None
-    
