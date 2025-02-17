@@ -147,10 +147,3 @@ def call_uber():
 
     # Simulate a successful Uber request
     return jsonify({"message": "Uber is on the way!", "status": "success"})
-=======
-@app.route("/predictions")
-def get_predictions():
-    return render_template('Predictions.html')
-
-if __name__ == "__main__":
-    app.run(debug=True)
