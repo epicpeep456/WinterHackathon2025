@@ -1,21 +1,29 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#map {
-    height: 400px;
-    width: 80%;
-    margin: 20px 0;
-    border: 1px solid #ccc;
+h1, h2 {
+    color: #333;
 }
 
-#resource-details, #add-resource {
+#user-details, #resources-list, #map, #resource-details, #add-resource, #recommendations {
     width: 80%;
+    margin: 20px 0;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#map {
+    height: 400px;
+    width: 100%;
     margin: 20px 0;
 }
 
@@ -25,18 +33,172 @@ form {
 }
 
 input, button {
-    margin: 5px 0;
+    margin: 10px 0;
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 16px;
 }
 
 button {
-    background-color: #007bff;
-    color: white;
+    background-color: #007BFF;
+    color: #fff;
     border: none;
     cursor: pointer;
 }
 
 button:hover {
     background-color: #0056b3;
+}
+
+#resource-details p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Recommendations Section */
+#recommendations {
+    text-align: center;
+}
+
+#recommend-button {
+    background-color: #28a745;
+    margin-bottom: 20px;
+}
+
+#recommend-button:hover {
+    background-color: #218838;
+}
+
+#recommendations-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#recommendations-list li {
+    background-color: #f8f9fa;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+#recommendations-list li:hover {
+    background-color: #e9ecef;
+}
+
+/* Add this to the existing styles */
+#current-location-button {
+    background-color: #ffc107;
+    margin-bottom: 20px;
+}
+
+#current-location-button:hover {
+    background-color: #e0a800;
+}
+
+/* Add this to the existing styles */
+#find-utilities-button {
+    background-color: #17a2b8;
+    margin-bottom: 20px;
+}
+
+#find-utilities-button:hover {
+    background-color: #138496;
+}
+
+#utilities-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#utilities-list li {
+    background-color: #f8f9fa;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+#utilities-list li:hover {
+    background-color: #e9ecef;
+}
+
+/* Add this to the existing styles */
+#accessibility {
+    margin-top: 20px;
+}
+
+#text-to-speech-button, #speech-to-text-button {
+    background-color: #6c757d;
+    margin-bottom: 10px;
+}
+
+#text-to-speech-button:hover, #speech-to-text-button:hover {
+    background-color: #5a6268;
+}
+
+/* Add this to the existing styles */
+#cancel-tts-button {
+    background-color: #dc3545;
+    margin-bottom: 10px;
+}
+
+#cancel-tts-button:hover {
+    background-color: #c82333;
+}
+
+#voice-command-help {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#voice-command-help h3 {
+    margin-top: 0;
+}
+
+#voice-command-help ul {
+    padding-left: 20px;
+}
+
+#voice-command-help li {
+    margin: 10px 0;
+}
+
+/* Add this to the existing styles */
+#read-instructions-button {
+    background-color: #6c757d;
+    margin-bottom: 10px;
+}
+
+#read-instructions-button:hover {
+    background-color: #5a6268;
+}
+
+/* Add this to the existing styles */
+#call-uber-button {
+    background-color: #000;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+#call-uber-button:hover {
+    background-color: #333;
+}
+
+#uber-details {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

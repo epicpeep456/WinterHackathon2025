@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resource Map</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap&loading=async&map_ids=1f413cc5c4b114c"
-      defer
-    ></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{google_maps_api_key}}&callback=initMap&libraries=places" defer></script>
 </head>
 <body>
     <h1>Resource Map</h1>
-    <div id="map"></div>
+    <div id="map" aria-label="Interactive map"></div>
+    <div id="user-details">
+        <h2>User Details</h2>
+        <input type="text" id="zip_code" placeholder="Zip Code" required aria-label="Enter your zip code">
+    </div>
     <div id="resource-details">
         <h2>Resource Details</h2>
         <p id="resource-name"></p>
@@ -23,14 +24,48 @@
     <div id="add-resource">
         <h2>Add a Resource</h2>
         <form id="resource-form">
-            <input type="text" id="name" placeholder="Resource Name" required>
-            <input type="text" id="description" placeholder="Description" required>
+            <input type="text" id="name" placeholder="Resource Name" required aria-label="Enter resource name">
+            <input type="text" id="description" placeholder="Description" required aria-label="Enter resource description">
             <!-- Hidden fields for latitude and longitude -->
             <input type="hidden" id="lat" name="lat">
             <input type="hidden" id="lng" name="lng">
-            <button type="submit">Add Resource</button>
+            <button type="submit">➕ Add Resource</button>
         </form>
-        <p>Click on the map to select the resource location.</p>
+    </div>
+    <div id="recommendations">
+        <h2>Recommendations</h2>
+        <button id="recommend-button">🔍 Get Recommendations</button>
+        <button id="current-location-button">📍 Get Recommendations Based on My Location</button>
+        <ul id="recommendations-list"></ul>
+    </div>
+    <div id="utilities">
+        <h2>Nearby Utilities and Public Resources</h2>
+        <button id="find-utilities-button">🚰 Find Nearby Utilities</button>
+        <ul id="utilities-list"></ul>
+    </div>
+    <div id="accessibility">
+        <h2>Accessibility Features</h2>
+        <button id="text-to-speech-button">📖 Read Page Content</button>
+        <button id="cancel-tts-button" style="display: none;">⏹️ Stop Reading</button>
+        <button id="speech-to-text-button">🎤 Start Voice Command</button>
+        <button id="read-instructions-button">📢 Read Voice Command Instructions</button>
+        <div id="voice-command-help">
+            <h3>How to Use Voice Commands</h3>
+            <p>Click "Start Voice Command" and say one of the following:</p>
+            <ul>
+                <li>"Get recommendations" → Get recommendations for nearby places.</li>
+                <li>"Find utilities" → Find nearby utilities and public resources.</li>
+                <li>"Get location" → Get recommendations based on your current location.</li>
+                <li>"Read page" → Read the page content aloud.</li>
+                <li>"Stop reading" → Stop the text-to-speech feature.</li>
+            </ul>
+        </div>
+    </div>
+    <div id="uber">
+        <h2>Call an Uber</h2>
+        <button id="call-uber-button">🚗 Call Uber</button>
+        <div id="uber-details"></div>
+        <div id="uber-status"></div>
     </div>
 </body>
 </html>
