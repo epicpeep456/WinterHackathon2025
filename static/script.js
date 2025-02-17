@@ -534,3 +534,66 @@ function callUber(lat, lng) {
         uberStatus.textContent = "Uber is on the way! 🚗";
     }, 2000); // Simulate a 2-second delay
 }
+
+document.getElementById("bus-routes-button").addEventListener("click", () => {
+    if (!selectedLocation) {
+        alert("Please select a destination on the map first.");
+        return;
+    }
+
+    if (navigator.geolocation) {
+        // Get the user's current location
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const currentLat = position.coords.latitude;
+                const currentLng = position.coords.longitude;
+
+                const destinationLat = selectedLocation.getPosition().lat();
+                const destinationLng = selectedLocation.getPosition().lng();
+
+                // Fetch bus routes using Google Maps Directions API
+                fetchBusRoutes(currentLat, currentLng, destinationLat, destinationLng);
+            },
+            (error) => {
+                console.error("Error getting current location:", error);
+                alert("Failed to get your current location. Please enable location access.");
+            }
+        );
+    } else {
+        alert("Geolocation is not supported by your browser.");
+    }
+});
+
+function fetchBusRoutes(startLat, startLng, endLat, endLng) {
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map); // Render the directions on the map
+
+    const request = {
+        origin: { lat: startLat, lng: startLng },
+        destination: { lat: endLat, lng: endLng },
+        travelMode: google.maps.TravelMode.TRANSIT, // Use public transit
+        transitOptions: {
+            modes: [google.maps.TransitMode.BUS], // Specify bus only
+        },
+    };
+
+    directionsService.route(request, (result, status) => {
+        if (status === google.maps.DirectionsStatus.OK) {
+            directionsRenderer.setDirections(result); // Display the route on the map
+
+            // Display step-by-step instructions
+            const steps = result.routes[0].legs[0].steps;
+            const instructionsList = document.getElementById("instructions-list");
+            instructionsList.innerHTML = ""; // Clear previous instructions
+
+            steps.forEach((step, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `<strong>Step ${index + 1}:</strong> ${step.instructions}`;
+                instructionsList.appendChild(li);
+            });
+        } else {
+            alert("Failed to fetch bus routes. Please try again.");
+        }
+    });
+}
