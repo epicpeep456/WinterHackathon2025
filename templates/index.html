@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{google_maps_api_key}}&callback=initMap&libraries=places" defer></script>
 </head>
+
 <body>
     <style>
         #instructions-list {
@@ -53,6 +55,7 @@
     <div id="user-details">
         <h2>User Details</h2>
         <input type="text" id="zip_code" placeholder="Zip Code" required aria-label="Enter your zip code">
+
     </div>
     <div id="resource-details">
         <h2>Resource Details</h2>
@@ -71,6 +74,7 @@
             <button type="submit">➕ Add Resource</button>
         </form>
     </div>
+
     <div id="recommendations">
         <h2>Recommendations</h2>
         <button id="recommend-button">🔍 Get Recommendations</button>
@@ -109,4 +113,5 @@
         <div id="uber-status"></div>
     </div>
 </body>
+
 </html>
