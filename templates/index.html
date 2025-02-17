@@ -8,6 +8,14 @@
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{google_maps_api_key}}&callback=initMap" defer></script> 
     <script asyncsrc="https://maps.googleapis.com/maps/api/js?key={{google_maps_api_key}}&loading=async&libraries=places&callback=initMap"></script>
+    <script>
+        function preditions() {
+            fetch("/predictions", {
+                method: "POST",
+                body: formData
+            })
+        }
+    </script>
 </head>
 <body>
     <h1>Resource Map</h1>
@@ -29,6 +37,10 @@
             <input type="text" id="description" placeholder="Description" required>
             <button type="submit">Add Resource</button>
         </form>
+    </div>
+    <div id="next-location-predictor">
+        <!-- <button onclick="location.href='Predictions.html'">AI Location Predictor</button> -->
+        <button onclick="predictions()">AI Location Predictor</button>
     </div>
 </body>
 </html>
