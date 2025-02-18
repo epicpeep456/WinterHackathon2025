@@ -147,3 +147,6 @@ def call_uber():
 
     # Simulate a successful Uber request
     return jsonify({"message": "Uber is on the way!", "status": "success"})
+
+if __name__ == "__main__":
+    app.run(debug=True)
